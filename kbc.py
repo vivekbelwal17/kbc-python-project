@@ -36,7 +36,7 @@ for i in range(len(questions)):
         print(f"Correct answer! You have won Rs. {levels[i]}")
         money_won = levels[i] # Update guaranteed money
     else:
-        print("Wrong answer!")
+        print("Galat javab!")
         break
 
 print(f"\nGame Over! You are taking home Rs. {money_won}")
