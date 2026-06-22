@@ -10,7 +10,11 @@ questions = [
 levels = [1000, 2000, 3000, 5000, 10000, 20000, 40000, 80000, 160000, 320000]
 money_won = 0
 
-print("Welcome to Kaun Banega Crorepati!\n")
+print("Namashkar, adaab, satsri akaal, abhinandan abhaar\n"
+      "Deviyon aur sajjano..\n"
+      "Aapka swagat hai Kaun Banega Crorepati ke is khel mein\n"
+      "Main hoon aapka host, Amitabh Bachahan\n"
+        "Chaliye shuru karte hain khel\n")
 
 # 3. Game Loop
 for i in range(len(questions)):
