@@ -1,3 +1,4 @@
+import random
 # 1. Define the questions, options, and correct answer (Data Structure)
 # Format: ["Question", "Option A", "Option B", "Option C", "Option D", "Correct Option Number"]
 questions = [
