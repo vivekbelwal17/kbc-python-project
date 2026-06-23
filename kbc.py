@@ -1,3 +1,4 @@
+import random
 # 1. Define the questions, options, and correct answer (Data Structure)
 # Format: ["Question", "Option A", "Option B", "Option C", "Option D", "Correct Option Number"]
 questions = [
@@ -9,8 +10,13 @@ questions = [
 # 2. Define the prize money for each level
 levels = [1000, 2000, 3000, 5000, 10000, 20000, 40000, 80000, 160000, 320000]
 money_won = 0
+is_50_50_used = False #track if the life line is used or not 
 
-print("Welcome to Kaun Banega Crorepati!\n")
+print("Namashkar, adaab, satsri akaal, abhinandan abhaar\n"
+      "Deviyon aur sajjano..\n"
+      "Aapka swagat hai Kaun Banega Crorepati ke is khel mein\n"
+      "Main hoon aapka host, Amitabh Bachahan\n"
+        "Chaliye shuru karte hain khel\n")
 
 # 3. Game Loop
 for i in range(len(questions)):
@@ -22,8 +28,36 @@ for i in range(len(questions)):
     print(f"3. {question[3]}          4. {question[4]}")
     
     # 4. Take Input & Check Logic
-    reply = int(input("Enter your answer (1-4) or 0 to quit: "))
-    
+    reply = int(input("Enter your answer (1-4), 0 to quit, or 5for 50:50 life line:"))
+    if reply == 5:
+        #check is life line is yoused or not 
+        if is_50_50_used == False:
+            print("\n--Life line is activeivated --")
+            
+            #set true value so players can trigger it again 
+            is_50_50_used = True
+            #grab the correct option by using the last index of the question list
+            correct_option = question[-1]
+            
+            #create a list of options to remove the correct option from the list
+            wrong_options =[1,2,3,4]
+            wrong_options.remove(correct_option)
+            #if the correct answer was 2, wrong_option is now(1,3,4])
+            
+            #randomly select one of the wrong options to remove from the list
+            random_wrong= random.choice(wrong_options)
+            print("\n computer please remove two wrong options !")
+            
+            #display the correct options and the randomly  wrong option to the player 
+            print(f"the correct answer is either option {correct_option} or option {random_wrong}.")
+            #stop player to ask for their final guess
+            reply = int(input("Enter your final answer :"))
+            
+        else:
+            print("sorry you have already used your 50:50 life line.")
+            reply = int(input("Enter your answer (1-4) or 0 to quit: "))
+            
+    #check if the player wants to quit the game
     if reply == 0:
         print("You chose to quit the game.")
         break
@@ -32,7 +66,7 @@ for i in range(len(questions)):
         print(f"Correct answer! You have won Rs. {levels[i]}")
         money_won = levels[i] # Update guaranteed money
     else:
-        print("Wrong answer!")
+        print("Galat javab!")
         break
 
 print(f"\nGame Over! You are taking home Rs. {money_won}")
