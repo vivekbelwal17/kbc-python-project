@@ -4,13 +4,16 @@ import random
 questions = [
     ["Which language was used to create this game?", "Python", "French", "JavaScript", "C++", 1],
     ["What is the capital of India?", "Mumbai", "New Delhi", "Kolkata", "Chennai", 2],
-    ["Which data type is used to store a sequence of characters?", "Integer", "Float", "String", "Boolean", 3]
+    ["Which data type is used to store a sequence of characters?", "Integer", "Float", "String", "Boolean", 3],
+    ["what is the name of your host of this game?", "Amitabh Bachchan", "Shahrukh Khan", "Salman Khan", "Akshay Kumar", 1],
+    ["what is the name of hosts unemployed son?", "Amitabh Bachchan""Abhishek Bachchan", "Samay Raina", "Imran Khan", 1]
 ]
 
 # 2. Define the prize money for each level
 levels = [1000, 2000, 3000, 5000, 10000, 20000, 40000, 80000, 160000, 320000]
 money_won = 0
 is_50_50_used = False #track if the life line is used or not 
+is_phone_a_friend_used = False #track if the life line is used or not
 
 print("Namashkar, adaab, satsri akaal, abhinandan abhaar\n"
       "Deviyon aur sajjano..\n"
@@ -28,7 +31,33 @@ for i in range(len(questions)):
     print(f"3. {question[3]}          4. {question[4]}")
     
     # 4. Take Input & Check Logic
-    reply = int(input("Enter your answer (1-4), 0 to quit, or 5for 50:50 life line:"))
+    reply = int(input("Enter your answer (1-4),\n 0 to quit,\n or 5 for 50:50 life line,\n 6 for phone a friend: "))
+    if reply == 6:
+        if is_phone_a_friend_used == False:
+            print("\n life line is activeivated --")
+            is_phone_a_friend_used = True
+            corect_option = question[-1]
+            wrong_options = [1,2,3,4]
+            wrong_options.remove(corect_option)
+            
+            random_wrong = random.choice(wrong_options)
+            print("\n computer please call your friend !")
+            
+            random_friend = random.randint(1,100)
+            if random_friend <= 75:
+                print(f"your friend is 75% correct answer which  {corect_option}")
+            else:
+                print(f"your friend is 25% correct answer which  {random_wrong}")
+            reply = int(input("Enter your final answer :"))
+            
+            print(f"the correct answer is either option {corect_option} or option {random_wrong}.")
+            #stop player to ask for their final guess
+            reply = int(input("Enter your final answer :"))
+            
+        else :
+            print("sorry you have already used your phone a friend life line.")
+            reply = int(input("Enter your answer (1-4) or 0 to quit: "))
+    
     if reply == 5:
         #check is life line is yoused or not 
         if is_50_50_used == False:
